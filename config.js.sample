@@ -1,0 +1,13 @@
+var config = {
+	candy: {
+		core: { debug: false, autojoin: ['test@conference.localhost.local'] },
+		view: { resources: 'candy/res/' }
+	},
+	http_bind: {
+		host: 'localhost',
+		port: 5280,
+		path: '/http-bind/';
+	}
+};
+
+module.exports = config;
