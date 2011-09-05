@@ -7,7 +7,12 @@ http.createServer(function (request, response) {
 	
 	// http-bind proxy
 	if(request.url === '/http-bind/') {
-		var proxy_req = http.request({ host: config.http_bind.host, port: config.http_bind.port, path: config.http_bind.path, method: request.method });
+		var proxy_req = http.request({
+			host: config.http_bind.host,
+			port: config.http_bind.port,
+			path: config.http_bind.path,
+			method: request.method
+		});
 		proxy_req.on('response', function(proxy_response) {
 			proxy_response.addListener('data', function(chunk) {
 				response.write(chunk, 'binary');

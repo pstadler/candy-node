@@ -1,6 +1,6 @@
 # Candy on node.js
 
-Deploy [Candy](http://amiadogroup.github.com/candy/) as a node.js application.
+Deploy [Candy](http://amiadogroup.github.com/candy/) as a [node.js](http://nodejs.org/) application.
 
 ## Setup
 
@@ -10,4 +10,4 @@ Deploy [Candy](http://amiadogroup.github.com/candy/) as a node.js application.
 * Deploy it
 
 ---
-Brought to you by [koeniglich.ch](http://koeniglich.ch/ "Patrick is koeniglich")
+_Brought to you by [koeniglich.ch](http://koeniglich.ch/ "Patrick is koeniglich")_
