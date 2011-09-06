@@ -1,7 +1,13 @@
 var config = require('./config'),
 	fs = require('fs'),
 	http = require('http'),
-	staticServer = new(require('node-static').Server)('./public');
+	staticServer = new(require('node-static').Server)('./public'),
+	indexFile;
+
+// parse index file only once
+fs.readFile('public/index.html', 'ascii', function(err, data) {
+	indexFile = data.replace('OPTIONS', JSON.stringify(config.candy));
+});
 
 http.createServer(function (request, response) {
 	
@@ -33,12 +39,8 @@ http.createServer(function (request, response) {
 	} else {	
 		request.on('end', function() {
 			if(request.url === '/' || request.url === '/index.html') {
-				// index file
-				fs.readFile('public/index.html', 'ascii', function(err, data) {
-					data = data.replace('OPTIONS', JSON.stringify(config.candy));
-					response.write(data, 'ascii');
-					response.end();
-				});
+				response.write(indexFile, 'ascii');
+				response.end();
 			} else {
 				staticServer.serve(request, response);
 			}
