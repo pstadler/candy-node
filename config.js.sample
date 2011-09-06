@@ -9,7 +9,7 @@ var config = {
 	http_bind: {
 		host: 'localhost',
 		port: 5280,
-		path: '/http-bind/';
+		path: '/http-bind/'
 	},
 	// App setting
 	app: {

@@ -14,7 +14,7 @@ http.createServer(function (request, response) {
 			method: request.method
 		});
 		proxy_req.on('response', function(proxy_response) {
-			proxy_response.addListener('data', function(chunk) {
+			proxy_response.on('data', function(chunk) {
 				response.write(chunk, 'binary');
 			});
 			proxy_req.on('end', function() {
@@ -22,16 +22,16 @@ http.createServer(function (request, response) {
 			});
 			response.writeHead(proxy_response.statusCode, proxy_response.headers);
 		});
-		request.addListener('data', function(chunk) {
+		request.on('data', function(chunk) {
 			proxy_req.write(chunk, 'binary');
 		});
-		request.addListener('end', function() {
+		request.on('end', function() {
 			proxy_req.end();
 		});
 	
 	// static files
 	} else {	
-		request.addListener('end', function() {
+		request.on('end', function() {
 			if(request.url === '/' || request.url === '/index.html') {
 				// index file
 				fs.readFile('public/index.html', 'ascii', function(err, data) {
