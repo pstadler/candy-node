@@ -1,11 +1,11 @@
-var config = require('./config'),
+var config = require(__dirname + '/config'),
 	fs = require('fs'),
 	http = require('http'),
-	staticServer = new(require('node-static').Server)('./public'),
+	staticServer = new(require('node-static').Server)(__dirname + '/public'),
 	indexFile;
 
 // parse index file only once
-fs.readFile('public/index.html', 'ascii', function(err, data) {
+fs.readFile(__dirname + '/public/index.html', 'ascii', function(err, data) {
 	indexFile = data.replace('OPTIONS', JSON.stringify(config.candy));
 });
 
