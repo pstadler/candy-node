@@ -1,6 +1,6 @@
 [submodule "public/candy"]
 	path = public/candy
-	url = git@github.com:amiadogroup/candy.git
+	url = git://github.com/amiadogroup/candy.git
 [submodule "node_modules/node-static"]
 	path = node_modules/node-static
 	url = git://github.com/cloudhead/node-static.git
