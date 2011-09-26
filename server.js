@@ -7,6 +7,11 @@ var config = require(__dirname + '/config'),
 // parse index file only once
 fs.readFile(__dirname + '/public/index.html', 'ascii', function(err, data) {
 	indexFile = data.replace('OPTIONS', JSON.stringify(config.candy));
+	var connect = '';
+	if(Array.isArray(config.candy.connect) && config.candy.connect.length > 0) {
+		var connect = "'" + config.candy.connect.join("', '") + "'";
+	}
+	indexFile = indexFile.replace('CONNECT', connect);
 });
 
 http.createServer(function (request, response) {

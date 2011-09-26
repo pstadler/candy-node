@@ -3,7 +3,9 @@ var config = {
 	// See http://amiadogroup.github.com/candy/#configuration
 	candy: {
 		core: { debug: false, autojoin: ['test@conference.localhost.local'] },
-		view: { resources: 'candy/res/' }
+		view: { resources: 'candy/res/' },
+		// Args passed to Candy.Core.connect();
+		connect: []
 	},
 	// HTTP-Bind settings
 	http_bind: {
