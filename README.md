@@ -1,6 +1,6 @@
 # Candy on node.js
 
-Deploy [Candy](http://amiadogroup.github.com/candy/) as a [node.js](http://nodejs.org/) application.
+Deploy [Candy](http://candy-chat.github.com/candy/) as a [node.js](http://nodejs.org/) application.
 
 ## Setup
 
