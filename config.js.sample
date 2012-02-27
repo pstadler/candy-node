@@ -1,6 +1,6 @@
 var config = {
 	// Candy settings
-	// See http://amiadogroup.github.com/candy/#configuration
+	// See http://candy-chat.github.com/candy/#configuration
 	candy: {
 		core: { debug: false, autojoin: ['test@conference.localhost.local'] },
 		view: { resources: 'candy/res/' },
