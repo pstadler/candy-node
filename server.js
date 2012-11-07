@@ -15,20 +15,20 @@ fs.readFile(__dirname + '/public/index.html', 'ascii', function(err, data) {
 });
 
 http.createServer(function (request, response) {
+	
 	// http-bind proxy
 	if(request.url === '/http-bind/') {
 		var proxy_req = http.request({
 			host: config.http_bind.host,
 			port: config.http_bind.port,
 			path: config.http_bind.path,
-			method: request.method,
-			headers: request.headers
+			method: request.method
 		});
 		proxy_req.on('response', function(proxy_response) {
 			proxy_response.on('data', function(chunk) {
 				response.write(chunk, 'binary');
 			});
-			proxy_response.on('end', function() {
+			proxy_req.on('end', function() {
 				response.end();
 			});
 			response.writeHead(proxy_response.statusCode, proxy_response.headers);
