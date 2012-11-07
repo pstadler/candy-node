@@ -14,21 +14,22 @@ fs.readFile(__dirname + '/public/index.html', 'ascii', function(err, data) {
 	indexFile = indexFile.replace('CONNECT', connect);
 });
 
-http.createServer(function (request, response) {
+http.createServer(function(request, response) {
 	// http-bind proxy
 	if(request.url === '/http-bind/') {
-		var headers = request.headers;
-		delete headers.host;
+		if(request.headers.host) {
+			delete request.headers.host;
+		}
 
-		var proxy_req = http.request({
+		var proxy_request = http.request({
 			host: config.http_bind.host,
 			port: config.http_bind.port,
 			path: config.http_bind.path,
 			method: request.method,
-			headers: headers
+			headers: request.headers
 		});
 
-		proxy_req.on('response', function(proxy_response) {
+		proxy_request.on('response', function(proxy_response) {
 			proxy_response.on('data', function(chunk) {
 				response.write(chunk, 'binary');
 			});
@@ -39,10 +40,10 @@ http.createServer(function (request, response) {
 		});
 
 		request.on('data', function(chunk) {
-			proxy_req.write(chunk, 'binary');
+			proxy_request.write(chunk, 'binary');
 		});
 		request.on('end', function() {
-			proxy_req.end();
+			proxy_request.end();
 		});
 
 	// static files
