@@ -17,13 +17,17 @@ fs.readFile(__dirname + '/public/index.html', 'ascii', function(err, data) {
 http.createServer(function (request, response) {
 	// http-bind proxy
 	if(request.url === '/http-bind/') {
+		var headers = request.headers;
+		delete headers.host;
+
 		var proxy_req = http.request({
 			host: config.http_bind.host,
 			port: config.http_bind.port,
 			path: config.http_bind.path,
 			method: request.method,
-			headers: request.headers
+			headers: headers
 		});
+
 		proxy_req.on('response', function(proxy_response) {
 			proxy_response.on('data', function(chunk) {
 				response.write(chunk, 'binary');
@@ -40,9 +44,9 @@ http.createServer(function (request, response) {
 		request.on('end', function() {
 			proxy_req.end();
 		});
-	
+
 	// static files
-	} else {	
+	} else {
 		request.on('end', function() {
 			if(request.url === '/' || request.url === '/index.html') {
 				response.write(indexFile, 'ascii');
@@ -50,7 +54,7 @@ http.createServer(function (request, response) {
 			} else {
 				staticServer.serve(request, response);
 			}
-		});		
+		});
 	}
-	
+
 }).listen(config.app.port);
