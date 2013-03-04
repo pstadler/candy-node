@@ -1,0 +1,15 @@
+{
+	"name": "Candy",
+	"description": "Deploy Candy as a node.js application",
+	"author": "Patrick Stadler <patrick.stadler@gmail.com>",
+	"version": "0.1.0",
+	"engines": {
+		"node": "0.6.x"
+	},
+	"dependencies": {
+		"node-static": "0.6.x"
+	},
+	"scripts": {
+		"start": "server.js"
+	}
+}
