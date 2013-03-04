@@ -8,7 +8,4 @@ Deploy [Candy](http://candy-chat.github.com/candy/) as a [node.js](http://nodejs
 * Install dependencies: `npm install`
 * Copy config.js.sample to config.js
 * Change the preferences in config.js to fit your setup
-* Deploy it
-
----
-_Brought to you by [koeniglich.ch](http://koeniglich.ch/ "Patrick is koeniglich")_
+* Run it: `npm start`
